@@ -33,7 +33,7 @@ pipeline {
             steps{
                 script{
                     /* Use the Credentials defined on line#10 */
-                    docker.withCredentials('',reg_cred){
+                    docker.withCredentials('',registryCredential){
                         /* Image built on line#28 */
                         image.push()
                     }

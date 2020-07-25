@@ -1,12 +1,12 @@
 pipeline {
-    ## Define RE-USABLE variables
+    /* Define RE-USABLE variables */
     environment {
-        ##IMAGE NAME tobe Build and push
+        /* IMAGE NAME tobe Build and push */
         registry = "mhendr/sample-aspnet"
-        ## Registry Credentials
-        ## Manage Jenkins > Manage Credentials > Click on "Jenkins" Under "Store" > Global Credentials 
-        ## Click "Add Credentials" link on left side panel
-        ## Provide username, password and ID="reg_cred"
+        /* Registry Credentials
+         Manage Jenkins > Manage Credentials > Click on "Jenkins" Under "Store" > Global Credentials 
+         Click "Add Credentials" link on left side panel
+         Provide username, password and ID="reg_cred" */
         registryCredential = 'reg_cred'
     }
    
@@ -24,7 +24,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
-                    ## Use variable define on line#5
+                    /* Use variable define on line#5 */
                     image = docker.build registry + ":$BUILD_NUMBER"                    
                 }
             }
@@ -32,9 +32,9 @@ pipeline {
         stage('Push to dockerhub'){
             steps{
                 script{
-                    ## Use the Credentials defined on line#10
+                    /* Use the Credentials defined on line#10 */
                     docker.withCredentials('',reg_cred){
-                        ## Image built on line#28
+                        /* Image built on line#28 */
                         image.push()
                     }
                 }

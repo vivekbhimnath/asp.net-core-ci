@@ -2,12 +2,12 @@ pipeline {
     /* Define RE-USABLE variables */
     environment {
         /* IMAGE NAME tobe Build and push */
-        registry = "mhendr/sample-aspnet"
+        registry = "unlimited.azurecr.io/sample-aspnet"
         /* Registry Credentials
          Manage Jenkins > Manage Credentials > Click on "Jenkins" Under "Store" > Global Credentials 
          Click "Add Credentials" link on left side panel
          Provide username, password and ID="reg_cred" */
-        registryCredential = 'reg_cred'
+        registryCredential = 'docker'
     }
    
     agent {
@@ -29,7 +29,7 @@ pipeline {
                 }
             }
         }
-        stage('Push to dockerhub'){
+        stage('Push to ACR'){
             steps{
                 script{
                     /* Use the Credentials defined on line#10 */
